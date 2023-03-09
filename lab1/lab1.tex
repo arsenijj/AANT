@@ -1,0 +1,99 @@
+\documentclass[bachelor, och, labwork]{shiza}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\usepackage[sort,compress]{cite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage[english,russian]{babel}
+\usepackage{minted}
+
+\usepackage{tempora}
+
+
+% \usepackage[colorlinks=false]{hyperref}
+
+
+\newcommand{\eqdef}{\stackrel {\rm def}{=}}
+
+
+\begin{document}
+
+\title{Алгоритмы алгебры и теории чисел}
+
+\course{4}
+
+\group{431}
+
+\napravlenie{10.05.01 "--- Компьютерная безопасность}
+
+
+\author{Никитина Арсения Владимировича}
+
+
+\satitle{доцент}
+\saname{А.\,С.\,Гераськин}
+
+
+\date{2022}
+
+\maketitle
+
+% Включение нумерации рисунков, формул и таблиц по разделам
+% (по умолчанию - нумерация сквозная)
+% (допускается оба вида нумерации)
+%\secNumbering
+
+
+\tableofcontents
+
+\section{Задание лабораторной работы}
+
+Решите сравнение вида $ax \equiv b ~(mod ~m)$ с помощью алгоритма Евклида.
+
+\section{Теоретическая часть}
+
+Если НОД($a, m$) чисел $a$ и $m$ равен $d$ и $d$ делит
+$b$, то сравнение $ax \equiv b ~(mod ~m)$ имеет $d$ решений. Если же $d$ не делит 
+$b$, то сравнение не имеет решений.
+
+После нахождения $d$ и выполнения условий, требуется разделить соотношение на
+это число $d$.
+
+Пусть после разделения соотношения оно имеет вид:
+
+\begin{center}
+    $a_1x \equiv b_1 ~(mod ~ m_1)$
+\end{center}
+
+Теперь имеем $\mathbf{GCD} (a,m) = 1$, поэтому можно воспользоваться расширенным
+алгоритмом Евклида и получить коэффициенты разложения Безу:
+
+$$1 = a_1q + m_1q \Rightarrow b_1 = a_1b_1q + m_1rb_1 \Rightarrow a_1b_1q-b_1=-m_1rb_1$$.
+
+Затем все решения сравнения можно найти по формуле:
+
+\begin{center}
+    $x \equiv x_0 + m_1k ~(mod ~m), ~k=\overline{0, d}$
+\end{center}
+
+
+
+\section{Практическая часть}
+\subsection{Пример работы алгоритма}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pic1.png}
+    \caption{}
+\end{figure}
+
+\setminted[python]{linenos,breaklines=true, fontsize=\small, style=bw}
+    \subsection{Код программы, реализующей рассмотренный алгоритм}
+        \inputminted{python}{lab1.py}
+
+\end{document}
